@@ -27,7 +27,4 @@ If no data is found or the filter criteria yield no results, a message will be d
 <img src="./src/assets/NoData.png" />
 
 Credits:
-The TableComponent is created by [Your Name] and is part of the [Project Name].
-
-License:
-This project is licensed under the [License Name].
+The TableComponent is created by [https://github.com/traj3ctory].
