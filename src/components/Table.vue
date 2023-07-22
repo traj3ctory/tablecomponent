@@ -11,6 +11,7 @@ ValidSortKey,
 import { formattedEditions, formattedTimeOfCapture } from "../utils/formatters";
 // import jsonData from "./data.json";
 
+// ================================================ Variables
 const data = ref<DataI[]>([]);
 const sortDirection = ref<string>("asc");
 const sortKey = ref<string>("");
@@ -19,19 +20,30 @@ const loading = ref<boolean>(true);
 const title = ref<string>("");
 let lastClickedColumn: ValidSortKey | null = null;
 
+/**
+ * The column headers for the table.
+ */
 const columnHeaders = [
   { label: "Name", title: "name", sort: true },
   { label: "Description", title: "description", sort: true },
   { label: "Editions(s)", title: "FeatureEditions", sort: true },
   { label: "timeOfScreenshot", title: "screenshots", sort: true },
-  // Add more columns as needed
 ] as ColumnI[];
+// ================================================
 
+/**
+ * A map of the sort direction for each column.
+ */
 const sortDirectionMap = new Map<
   keyof FeatureI | keyof EditionI | keyof ScreenshotI | string,
   "asc" | "desc"
 >();
+// ================================================
 
+/**
+ * @function fetchData
+ * @description Fetches the data from the API and sets the data and title values.
+ */
 const fetchData = async () => {
   try {
     loading.value = true;
@@ -47,7 +59,12 @@ const fetchData = async () => {
     loading.value = false;
   }
 };
+// =================================================
 
+/**
+ * @function sort
+ * @description Sorts the data by the given key.
+ */
 const sort = (key: ValidSortKey) => {
   sortDirection.value = sortDirection.value === "asc" ? "desc" : "asc";
   sortKey.value = key;
@@ -73,7 +90,12 @@ const sort = (key: ValidSortKey) => {
       : (valueB as any) - (valueA as any);
   });
 };
+// ================================================
 
+/**
+ * @function getValue
+ * @description Gets the value for the given key from the given item.
+ */
 const getValue = (
   item: FeatureI,
   key: keyof FeatureI | keyof EditionI | keyof ScreenshotI
@@ -92,7 +114,12 @@ const getValue = (
 
   return ""; // Default value if the key is not found in any nested objects
 };
+// ================================================
 
+/**
+ * @function filteredData
+ * @description Filters the data by the given filter value.
+ */
 const filteredData = computed(() => {
   if (data?.value == undefined) {
     return [];
@@ -119,6 +146,7 @@ const filteredData = computed(() => {
 
   return [{ ...data.value[0], features: { items: foundFeatures } }];
 });
+// ================================================
 
 onMounted(async () => {
   await fetchData();
@@ -144,17 +172,6 @@ onMounted(async () => {
       <table class="table-auto w-full divide-y divide-gray-200">
         <thead class="text-left bg-gray-50">
           <tr>
-            <!-- <th class="py-4" @click="sort('name')">
-              Name&ensp;<span v-if="sortDirectionMap.get('name') === 'asc'"
-                >&uarr;</span
-              >
-              <span v-else-if="sortDirectionMap.get('name') === 'desc'"
-                >&darr;</span
-              >
-            </th>
-            <th class="py-4" @click="sort('description')">Description</th>
-            <th class="py-4" @click="sort('FeatureEditions')">Editions(s)</th>
-            <th class="py-4" @click="sort('screenshots')">timeOfScreenshot</th> -->
             <th
               class="py-4 border-x px-2"
               v-for="header in columnHeaders"
