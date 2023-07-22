@@ -1,18 +1,33 @@
-# Vue 3 + TypeScript + Vite
+## Table Component
+### Props:
+The TableComponent does not accept any props.
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<img src="./src/assets/data.png" />
 
-## Recommended IDE Setup
+### Sorting:
+To enable sorting, click on the table headers. The table can be sorted based on the following columns:
+<img src="./src/assets/sort.png" />
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Name
+Description
+Editions(s)
+timeOfScreenshot
+The sorting direction is indicated by an arrow icon displayed next to the column header.
 
-## Type Support For `.vue` Imports in TS
+### Filtering:
+To filter the table data, enter a search term in the input field labeled "Filter by Edition." The table will be updated to show only the rows that match the entered search term in the edition name or description.
+<img src="./src/assets/filter.png" />
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### Loading Indicator:
+While the data is being fetched from the API, a loading indicator will be displayed. Once the data is loaded, the table will be rendered.
+<img src="./src/assets/load.png" />
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### Empty Data Handling:
+If no data is found or the filter criteria yield no results, a message will be displayed indicating that no data is found.
+<img src="./src/assets/NoData.png" />
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Credits:
+The TableComponent is created by [Your Name] and is part of the [Project Name].
+
+License:
+This project is licensed under the [License Name].
